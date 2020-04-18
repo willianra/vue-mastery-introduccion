@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body>
+  
+<div class="container">
+
+  <div  class="row" id="app">
+    <div class="row justify-content-md-center" >
+      <div  class="product-image">
+        <img  style="width: 400px;"   v-bind:src="imagen" alt="">
+      </div>
+    </div>
+      <div class="product-info"> 
+        <h1 >{{titulo}}</h1>
+         <p class="btn btn-success" v-if="stock"> Disponible </p>
+         <p style="background-color: rgb(79, 79, 143); color: white;" class="btn bg" v-else :class="{ sinStock: !stock }">no disponible</p>
+         <p> {{estaEnVenta}}</p>
+          <p  class="btn bg-warning" v-show="estado"> descuento 50%</p>
+          <ul  style="border-color:green; border-style:dotted ;">
+            <li v-for="detalle in detalles">
+              {{detalle}}
+            </li>    
+          </ul>
+          <div  
+            style="width:40px; height: 40px;margin-top: 5px;"   
+            :style="{backgroundColor: item.variante_color }"
+            v-for="(item,index) in variantes"
+            @mouseover="actualizarProducto(index)">
+          </div>
+
+          <button  
+          
+          v-on:click="agregar_a_carrito"
+          :disabled="!stock"
+          :class="[!stock ? 'desabilitarBoton' : 'btn btn-danger']"
+          >   añadir +
+          </button>
+          <button class="btn btn-danger" v-on:click="quitarDeCarrito"> quitar +</button>
+          <button class="btn btn-info"> Carrito {{cantidad}} </button>
+      </div>
+    
+  </div>
+</div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script src="app.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+.desabilitarBoton{
+  background-color: #d8d8d8;
+  color: white;
+  
+} 
+.sinStock{
+  text-decoration: line-through;
+}
