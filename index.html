@@ -10,44 +10,12 @@
 
 <body>
   
-<div class="container">
-
-  <div  class="row" id="app">
-    <div class="row justify-content-md-center" >
-      <div  class="product-image">
-        <img  style="width: 400px;"   v-bind:src="imagen" alt="">
-      </div>
-    </div>
-      <div class="product-info"> 
-        <h1 >{{titulo}}</h1>
-         <p class="btn btn-success" v-if="stock"> Disponible </p>
-         <p style="background-color: rgb(79, 79, 143); color: white;" class="btn bg" v-else :class="{ sinStock: !stock }">no disponible</p>
-         <p> {{estaEnVenta}}</p>
-          <p  class="btn bg-warning" v-show="estado"> descuento 50%</p>
-          <ul  style="border-color:green; border-style:dotted ;">
-            <li v-for="detalle in detalles">
-              {{detalle}}
-            </li>    
-          </ul>
-          <div  
-            style="width:40px; height: 40px;margin-top: 5px;"   
-            :style="{backgroundColor: item.variante_color }"
-            v-for="(item,index) in variantes"
-            @mouseover="actualizarProducto(index)">
-          </div>
-
-          <button  
-          
-          v-on:click="agregar_a_carrito"
-          :disabled="!stock"
-          :class="[!stock ? 'desabilitarBoton' : 'btn btn-danger']"
-          >   añadir +
-          </button>
-          <button class="btn btn-danger" v-on:click="quitarDeCarrito"> quitar +</button>
-          <button class="btn btn-info"> Carrito {{cantidad}} </button>
-      </div>
-    
-  </div>
+<div id="app" class="container">
+  <producto :premium="premium"@agregar-a-carrito="quitarDeCarrito" ></producto>
+  <button class="btn btn-info"> Carrito {{cantidad}} </button>
+ <producto :premium="premium"></producto>
+ <producto :premium="premium"></producto>
+ 
 </div>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
   <script src="app.js"></script>
